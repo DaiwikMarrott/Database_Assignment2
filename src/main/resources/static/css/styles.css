@@ -1,0 +1,10 @@
+.students-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.students-card {
+    border: 1px solid #ccc;
+    bottom: 0;
+}

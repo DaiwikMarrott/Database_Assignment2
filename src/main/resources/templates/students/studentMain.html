@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link th:href="@{/css/styles.css}" rel="stylesheet" />
+
+</head>
+
+<body>
+    <main class="container-fluid mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <h1 class="text-center mb-4">STUDENTS</h1>
+                <div class="students-container">
+                    <div th:each="students: ${stu}" class="students-card"
+                         th:style="'height:' + ${students.height} + 'px; width: ' + ${students.weight} + 'pt'">
+                        <p class="mb-3" th:text="${students.name}" th:style="'color: ' + ${students.hairColor}"></p>
+                        <p class="mb-3" th:text="${students.gpa}" th:style="'color: ' + black"></p>
+                        <!-- Edit button at the bottom -->
+                        <!-- <button class="editBtn" th:data-uid="${students.uid}">Edit</button>
+                        <script>
+                            document.addEventListener('click', function (event) {
+                                if (event.target.classList.contains('editBtn')) 
+                                {
+                                    // Get the student ID from the 'data-uid' attribute
+                                    var studentId = event.target.getAttribute('data-uid');
+                                    window.location.href = '/students/edit/' + studentId;
+                                }
+                            }); 
+                        </script> -->
+                        <button class="editBtn" th:data-uid="${students.uid}">Edit</button>
+                        <script>
+                             document.addEventListener('click', function (event) {
+                                if (event.target.classList.contains('editBtn')) {
+                                     // Get the student ID from the 'data-uid' attribute
+                                    var studentId = event.target.getAttribute('data-uid');
+                                    // Redirect to the edit page with the student ID
+                                    window.location.href = '/students/edit/' + studentId;
+                                    }
+                                 });
+                        </script>
+                        <!-- this is the remove button -->
+                        <button class="btn btn-danger removeBtn" th:data-uid="${students.uid}">Remove</button>
+                        <script>
+                            document.querySelectorAll('.removeBtn').forEach(button => {
+                                button.addEventListener('click', function() {
+                                    const studentId = this.getAttribute('data-uid');
+                                    const form = document.createElement('form');
+                                    form.method = 'post';
+                                    form.action = '/students/remove/' + studentId;
+                                    document.body.appendChild(form);
+                                    form.submit();
+                                });
+                            });
+                        </script>
+
+                        </div>
+                </div>
+                <!-- Centered Add button -->
+                <div class="d-flex justify-content-center mt-3">
+                    <button id="addBtn" class="btn btn-primary">Add Student</button>
+                    <script>
+                        document.getElementById('addBtn').addEventListener('click', function() {
+                            window.location.href = '/add.html';
+                        });
+                    </script>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>
