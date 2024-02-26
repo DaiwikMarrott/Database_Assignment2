@@ -3,6 +3,6 @@ COPY . .
 RUN mvn clean package -DskipTests
 
 FROM openjdk:17.0.1-jdk-slim
-COPY --from=build /target/cmpt276-0.0.1-SNAPSHOT.jar cmpt276.jar
+COPY --from=build /target/assnm2-0.0.1-SNAPSHOT.jar assnm2.jar
 EXPOSE 8080
-ENTRYPOINT [ "java", "-jar", "cmpt276.jar" ]
+ENTRYPOINT [ "java", "-jar", "assnm2.jar" ]
